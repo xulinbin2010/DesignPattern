@@ -1,3 +1,5 @@
+package behavior;
+
 /**
  * 模版方法
  */
@@ -13,24 +15,24 @@ public class TemplatePattern {
     }
 
 
-    public abstract  static class Person{
-
+    public abstract static class Person {
         public Person() {
 
         }
 
-        public void templateMethods(){
-            System.out.println("去教室" );
+        public void templateMethods() {
+            System.out.println("去教室");
             operative1();
-            System.out.println("离开教室 " );
+            System.out.println("离开教室 ");
             operative2();
         }
 
         public abstract void operative1();
+
         public abstract void operative2();
     }
 
-    public static class Teacher extends Person{
+    public static class Teacher extends Person {
         public Teacher() {
             System.out.println("我是老师--------");
         }
@@ -46,7 +48,7 @@ public class TemplatePattern {
         }
     }
 
-    public static class Student extends Person{
+    public static class Student extends Person {
 
         public Student() {
             System.out.println("我是学生--------");

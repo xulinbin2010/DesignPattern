@@ -1,3 +1,5 @@
+package behavior;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,12 +8,13 @@ public class VisitorPattern {
 
     // 访问器接口，定义了对不同元素类型的访问操作
     public interface Visitor {
-        public void visit(ConcreteElementA element);
-        public void visit(ConcreteElementB element);
+        void visit(ConcreteElementA element);
+
+        void visit(ConcreteElementB element);
     }
 
     // 具体访问器实现，针对不同的元素类型实现不同的访问逻辑
-    public static class  ConcreteVisitor implements Visitor {
+    public static class ConcreteVisitor implements Visitor {
         @Override
         public void visit(ConcreteElementA element) {
             System.out.println("具体访问者访问：" + element.operationA());
@@ -79,7 +82,6 @@ public class VisitorPattern {
         ConcreteElementB concreteElementB = new ConcreteElementB();
         objectStructure.attach(concreteElementB);
 //        objectStructure.detach(concreteElementB);
-
         Visitor visitor = new ConcreteVisitor();
         objectStructure.accept(visitor);
     }
