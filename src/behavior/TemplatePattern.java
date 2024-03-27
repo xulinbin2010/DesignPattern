@@ -11,57 +11,56 @@ public class TemplatePattern {
         student.templateMethods();
         Teacher teacher = new Teacher();
         teacher.templateMethods();
+    }
+}
+
+
+abstract class Person {
+    public Person() {
 
     }
 
-
-    public abstract static class Person {
-        public Person() {
-
-        }
-
-        public void templateMethods() {
-            System.out.println("去教室");
-            operative1();
-            System.out.println("离开教室 ");
-            operative2();
-        }
-
-        public abstract void operative1();
-
-        public abstract void operative2();
+    public void templateMethods() {
+        System.out.println("去教室");
+        operative1();
+        System.out.println("离开教室 ");
+        operative2();
     }
 
-    public static class Teacher extends Person {
-        public Teacher() {
-            System.out.println("我是老师--------");
-        }
+    abstract void operative1();
 
-        @Override
-        public void operative1() {
-            System.out.println("老师上课");
-        }
+    abstract void operative2();
+}
 
-        @Override
-        public void operative2() {
-            System.out.println("老师批改作业");
-        }
+class Teacher extends Person {
+    public Teacher() {
+        System.out.println("我是老师--------");
     }
 
-    public static class Student extends Person {
+    @Override
+    public void operative1() {
+        System.out.println("老师上课");
+    }
 
-        public Student() {
-            System.out.println("我是学生--------");
-        }
+    @Override
+    public void operative2() {
+        System.out.println("老师批改作业");
+    }
+}
 
-        @Override
-        public void operative1() {
-            System.out.println("学生听课");
-        }
+class Student extends Person {
 
-        @Override
-        public void operative2() {
-            System.out.println("学生写作业");
-        }
+    public Student() {
+        System.out.println("我是学生--------");
+    }
+
+    @Override
+    public void operative1() {
+        System.out.println("学生听课");
+    }
+
+    @Override
+    public void operative2() {
+        System.out.println("学生写作业");
     }
 }
