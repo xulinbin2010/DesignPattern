@@ -3,6 +3,9 @@ package behavior;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 观察者模式是一种行为设计模式， 允许你定义一种订阅机制， 可在对象事件发生时通知多个 “观察” 该对象的其他对象。
+ */
 public class ObserverPattern {
     public static void main(String[] args) {
         Subject subjectA = new ConcreteSubject("目标A");
@@ -13,7 +16,7 @@ public class ObserverPattern {
 
         subjectA.setState("更新了");
 
-        System.out.println("======================================");
+        System.out.println("=============处理中=========================");
 
         subjectA.Detach(observerD);
 

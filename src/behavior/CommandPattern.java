@@ -1,5 +1,9 @@
 package behavior;
 
+/**
+ * 命令模式是一种行为设计模式， 它可将请求转换为一个包含与请求相关的所有信息的独立对象。
+ * 该转换让你能根据不同的请求将方法参数化、 延迟请求执行或将其放入队列中， 且能实现可撤销操作。
+ */
 public class CommandPattern {
     public static void main(String[] args) {
         Tv tv = new Tv(); // 接收者 对象 电视机
@@ -11,7 +15,7 @@ public class CommandPattern {
         invoker.setCommand(onCommand); // 给请求者设置 开机 命令
         invoker.call(); // 请求者去请求命令
 
-        System.out.println("========================================");
+        System.out.println("===================处理中=====================");
 
         invoker.setCommand(offCommand); // 给请求者设置 关机命令
         invoker.call(); // 请求者去请求命令
@@ -31,7 +35,7 @@ class Invoker { // 请求者
 }
 
 interface Command { // 命令接口
-    public void Execute(); // 执行命令
+    void Execute(); // 执行命令
 }
 
 class OnCommand implements Command { // 开机命令
@@ -48,7 +52,7 @@ class OnCommand implements Command { // 开机命令
 }
 
 class OffCommand implements Command { // 关机命令
-    private Tv tv;
+    private final Tv tv;
 
     public OffCommand(Tv tv) {
         this.tv = tv;

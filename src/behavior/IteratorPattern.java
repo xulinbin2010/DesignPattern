@@ -3,6 +3,9 @@ package behavior;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 迭代器模式是一种行为设计模式， 让你能在不暴露集合底层表现形式 （列表、 栈和树等） 的情况下遍历集合中所有的元素
+ */
 public class IteratorPattern {
     public static void main(String[] args) {
         BookAggregate bookAggregate = new BookAggregate();
@@ -23,9 +26,9 @@ public class IteratorPattern {
 }
 
 interface Iterator {
-    public boolean hasNext();
+    boolean hasNext();
 
-    public Object next();
+    Object next();
 }
 
 class BookIterator implements Iterator {
@@ -56,11 +59,11 @@ class BookIterator implements Iterator {
 }
 
 interface Aggregate {
-    public Iterator CreateIterator();
+    Iterator CreateIterator();
 }
 
 class BookAggregate implements Aggregate {
-    private List<Book> list = new ArrayList<>();
+    private final List<Book> list = new ArrayList<>();
 
     public void Add(Book book) {
         list.add(book);
@@ -82,8 +85,8 @@ class BookAggregate implements Aggregate {
 
 
 class Book {
-    private String name;
-    private double price;
+    private final String name;
+    private final double price;
 
     public Book(String name, double price) {
         this.name = name;
