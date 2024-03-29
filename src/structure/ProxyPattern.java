@@ -1,5 +1,9 @@
 package structure;
 
+/**
+ * 一个类代表另一个类的功能。
+ * 创建具有现有对象的对象，以便向外界提供功能接口
+ */
 public class ProxyPattern {
     public static void main(String[] args) {
         RealSubject realSubject = new RealSubject();

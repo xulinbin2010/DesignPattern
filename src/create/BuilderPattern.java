@@ -3,6 +3,10 @@ package create;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * 使用多个简单的对象一步一步构建成一个复杂的对象
+ */
 public class BuilderPattern {
     public static void main(String[] args) {
         Director director = new Director();
@@ -10,11 +14,13 @@ public class BuilderPattern {
         Builder builder1 = new Builder1();
         director.Construct(builder1);
         Product product1 = builder1.getResult();
+        System.out.print("产品1");
         product1.show();
 
         Builder builder2 = new Builder2();
         director.Construct(builder2);
         Product product2 = builder2.getResult();
+        System.out.print("产品2");
         product2.show();
     }
 }
@@ -74,7 +80,7 @@ class Product {
     }
 
     public void show() {
-        System.out.print("产品的组成：");
+        System.out.print("组成：");
         for (String s : parts)
             System.out.print(s + " ");
 
