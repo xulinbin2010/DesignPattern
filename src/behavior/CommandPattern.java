@@ -39,7 +39,7 @@ interface Command { // 命令接口
 }
 
 class OnCommand implements Command { // 开机命令
-    private Tv tv;
+    private final Tv tv;
 
     public OnCommand(Tv tv) {
         this.tv = tv;

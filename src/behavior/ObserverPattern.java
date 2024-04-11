@@ -8,28 +8,23 @@ import java.util.List;
  */
 public class ObserverPattern {
     public static void main(String[] args) {
-        Subject subjectA = new ConcreteSubject("目标A");
+        Subject subject = new ConcreteSubject("目标1");
 
-        Observer observerB = new ConcreteObserver("张三", subjectA);
-        Observer observerC = new ConcreteObserver("李四", subjectA);
-        Observer observerD = new ConcreteObserver("王五", subjectA);
+        Observer observerA = new ConcreteObserver("张三", subject);
+        Observer observerB = new ConcreteObserver("李四", subject);
+        Observer observerC = new ConcreteObserver("王五", subject);
 
-        subjectA.setState("更新了");
-
+        subject.setState("更新了");
         System.out.println("=============处理中=========================");
-
-        subjectA.Detach(observerD);
-
-        subjectA.setState("停更了");
+        subject.detach(observerC);
+        subject.setState("停更了");
     }
 }
 
 interface Subject { // 目标
     void Attach(Observer observer); // 添加观察者
 
-    void Detach(Observer observer); // 删除观察者
-
-    void Notify(); // 状态改变后 通知所有观察者
+    void detach(Observer observer); // 删除观察者
 
     void setState(String state); // 设置状态（改变状态）
 
@@ -37,10 +32,10 @@ interface Subject { // 目标
 }
 
 class ConcreteSubject implements Subject {
-    private String name;
+    private final String name;
     private String state;
 
-    private List<Observer> observerList;
+    private final List<Observer> observerList;
 
     public ConcreteSubject(String name) {
         state = "未更新";
@@ -52,7 +47,7 @@ class ConcreteSubject implements Subject {
         this.state = state;
 
         System.out.println(name + "的状态发生变化，变化后的状态为：" + state);
-        Notify();
+        notifyIt();
     }
 
     public String getState() {
@@ -63,11 +58,11 @@ class ConcreteSubject implements Subject {
         observerList.add(observer);
     }
 
-    public void Detach(Observer observer) {
+    public void detach(Observer observer) {
         observerList.remove(observer);
     }
 
-    public void Notify() {
+    private void notifyIt() {
         // for (遍历对象类型 对象名 : 遍历对象)
         for (Observer observer : observerList) {
             observer.update();
@@ -76,13 +71,13 @@ class ConcreteSubject implements Subject {
 }
 
 interface Observer { // 观察者接口
-    public void update(); // 收到通知 更新观察者的状态
+    void update(); // 收到通知 更新观察者的状态
 }
 
 class ConcreteObserver implements Observer {
-    private String name;
+    private final String name;
     private String state;
-    private Subject subject;
+    private final Subject subject;
 
     public ConcreteObserver(String name, Subject subject) {
         this.name = name;
