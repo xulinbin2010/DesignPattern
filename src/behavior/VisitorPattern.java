@@ -3,6 +3,9 @@ package behavior;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 访问者模式
+ */
 public class VisitorPattern {
 
     public static void main(String[] args) {
@@ -69,7 +72,7 @@ class ConcreteElementB implements Element {
 class ObjectStructure {
 
     //所有对象元素的结合
-    private List<Element> elements = new ArrayList<>();
+    private final List<Element> elements = new ArrayList<>();
 
     public void attach(Element element) {
         elements.add(element);
